@@ -1,5 +1,9 @@
+.idea
+*.swp
+*.*~
 node_modules/
 build/
 coverage/
 .eslintcache
-
+*.log
+stats.json
