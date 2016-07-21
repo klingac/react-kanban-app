@@ -9,23 +9,24 @@ export default class App extends React.Component {
 		this.state = {
 			notes: [
 				{
-					id: uuid.v4(), 
+					id: uuid.v4(),
 					task: 'Learn React'
 				},
 				{
-					id:  uuid.v4(),
+					id: uuid.v4(),
 					task: 'Do laundry'
 				}
 			]
 		};
 	}
+
 	render() {
 		const {notes} = this.state;
 
 		return (
 			<div>
 				<button onClick={this.addNote}>+</button>
-				<Notes notes={notes}/>
+				<Notes notes={notes} onDelete={this.deleteNote}/>
 			</div>
 		);
 	}
@@ -48,4 +49,14 @@ export default class App extends React.Component {
 			}])
 		});
 	}
+
+	deleteNote = (id, e) => {
+			// Avoid bubbling to edit
+			e.stopPropagation();
+
+			this.setState({
+				notes: this.state.notes.filter(note => note.id !== id)
+			});
+	}
+
 }
